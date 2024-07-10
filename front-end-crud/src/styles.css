@@ -1,3 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+body
+{
+  background: #4B79A1;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #283E51, #4B79A1);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #283E51, #4B79A1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height:100vh;
+  background-attachment: fixed ;
+  transition: background 4.20s ease-in-out;
+}
+.light-mode {
+  background: #8e9eab;
+  background: -webkit-linear-gradient(to bottom, #eef2f3, #8e9eab);
+  background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+}
 
+.dark-mode {
+  background: #4B79A1;
+  background: -webkit-linear-gradient(to right, #283E51, #4B79A1);
+  background: linear-gradient(to right, #283E51, #4B79A1);
+}
+#light{
+font-size: 20px !important;
+}
+#dark{
+  font-size: 20px !important;
+}
+
+#light:hover{
+  font-size: 40px !important;
+  }
+  #dark:hover{
+    font-size: 40px !important;
+  }
+  .formLogAuth{
+    /* background: rgba(0, 0, 0, 0.3); */
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    box-shadow: 0 0 30px rgba(0,0,0,.568);
+    background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #2a5298, #1e3c72);
+    transition: background 10s ease-in-out;
+  }
+    .darkForm{
+      background: #1e3c72;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #2a5298, #1e3c72);
+      }
+      .lightForm{
+        background: #334d50;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to top, #cbcaa5, #334d50);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to top, #cbcaa5, #334d50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      }
+.formLogAuth .ingresar{
+  background: #64b3f4;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700!important;
+  }
+  .formLogAuth .ingresar:hover{
+    background: #4B79A1;
+    color: #fff;
+  }
 
