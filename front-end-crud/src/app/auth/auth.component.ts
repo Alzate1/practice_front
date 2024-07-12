@@ -24,10 +24,18 @@ export  default class  AuthComponent {
     const formValues = this.authUser.value;
     const first_name  = formValues.first_name;
     const last_name = formValues.first_name;
-    const username = formValues['first_name'];
-    const password = formValues['first_name'];
-    const user = formValues.user
+    const username = formValues.username
     const password = formValues.password
+    if (first_name == null || first_name=='') {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Debes de llenar el campo de Nombre",
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+    }else{
       this.auth.createUser(this.authUser.value).subscribe(response=>{
         Swal.fire({
           position: "center",
@@ -39,8 +47,10 @@ export  default class  AuthComponent {
           this.router.navigate(['']);
         })
       },error=>{
-        console.error('Error creating user', error);
+        console.error('Erro Faltan datos necesarios en el cuerpo de la solicitud', error);
       }
     )
+    }
+
     }
 }
