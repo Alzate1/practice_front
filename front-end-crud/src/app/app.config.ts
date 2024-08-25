@@ -1,6 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter,withViewTransitions } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -9,8 +9,9 @@ export const appConfig: ApplicationConfig = {
     withViewTransitions()
 
   ),
-  importProvidersFrom(
-    HttpClientModule
-  )
+  // importProvidersFrom(
+  //   HttpClientModule
+  // ),
+  provideHttpClient()
 ]
 };

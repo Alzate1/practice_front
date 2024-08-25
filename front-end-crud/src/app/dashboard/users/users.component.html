@@ -1,0 +1,123 @@
+<section>
+  <div class="container text-center mt-5">
+    <h1 class="mb-4">Listado de usuarios</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+      Agregar nuevo usuario
+    </button>
+    <table class="table table-hover table-striped table-bordered w-100">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Tipo usuario</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of usersList;track $index){
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.first_name }}</td>
+            <td>{{ item.last_name }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ getUserTypeName(item.usertype_id) }}</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="openModal(item.id)">Editar</button>
+              |
+            <button type="button" class="btn btn-danger"(click)="deleteUsers(item.id,item.username)">
+              Borrar
+            </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario <i class="bi bi-person-gear"></i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="updateUser" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <div class="mb-3">
+              <label  class="col-form-label">Nombre Completo</label>
+              <input type="text" class="form-control" formControlName="first_name" placeholder="Por favor digite su nombre">
+            </div>
+            <div class="mb-3">
+              <label  class="col-form-label">Apellido Completo</label>
+              <input type="text" class="form-control" formControlName="last_name"placeholder="Por favor digite  su apellido">
+            </div>
+            <div class="mb-3">
+              <label  class="col-form-label">Tipo de usuario</label>
+              <select class="form-select" formControlName="usertype_id">
+                <option value="" selected disabled>Seleccione una Opción</option>
+                @for (item of typeUserList; track $index) {
+                  <option value="{{ item.id }}">{{ item.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label  class="col-form-label">Usuario</label>
+              <input type="text" class="form-control" placeholder="Por favor digite su usuario"formControlName="username">
+            </div>
+            <div class="mb-3">
+              <label  class="col-form-label">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password"placeholder="Por favor digite su contraseña">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" value="Actualizar">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Usuario <i class="bi bi-person-gear"></i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="createUser" (ngSubmit)="onCreate()">
+        <div class="modal-body row">
+            <div class="mb-3 col-6">
+              <label  class="col-form-label">Nombre Completo</label>
+              <input type="text" class="form-control" formControlName="first_name" placeholder="Por favor digite su nombre">
+            </div>
+            <div class="mb-3 col-6">
+              <label  class="col-form-label">Apellido Completo</label>
+              <input type="text" class="form-control" formControlName="last_name"placeholder="Por favor digite  su apellido">
+            </div>
+            <div class="mb-3">
+              <label  class="col-form-label">Tipo de usuario</label>
+              <select class="form-select" formControlName="usertype_id">
+                <option value="" selected disabled>Seleccione una Opción</option>
+                @for (item of typeUserList; track $index) {
+                  <option value="{{ item.id }}">{{ item.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3 col-6">
+              <label  class="col-form-label">Usuario</label>
+              <input type="text" class="form-control" placeholder="Por favor digite su usuario"formControlName="username">
+            </div>
+            <div class="mb-3 col-6">
+              <label  class="col-form-label">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password"placeholder="Por favor digite su contraseña">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" value="Registrar">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</section>

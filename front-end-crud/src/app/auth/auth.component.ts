@@ -12,45 +12,51 @@ import { Router } from '@angular/router';
 })
 export  default class  AuthComponent {
   authUser = new FormGroup({
-    first_name : new FormControl(),
-    last_name :new FormControl(),
-    username :new FormControl(),
-    password :new FormControl()
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl()
     })
     constructor(private auth: AuthService,
       private router: Router,
     ){}
     onSubmit ():void{
-    const formValues = this.authUser.value;
-    const first_name  = formValues.first_name;
-    const last_name = formValues.first_name;
-    const username = formValues.username
-    const password = formValues.password
-    if (first_name == null || first_name=='') {
+
+    if (!this.authUser.valid) {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Debes de llenar el campo de Nombre",
+        title: "Todos los campos son obligatorios",
+        showConfirmButton: true,
+        timer: 1500
+      });
+      return;
+
+    }
+    this.auth.createUser(this.authUser.value).subscribe(response=>{
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Registro de Usuario exitoso",
         showConfirmButton: false,
         timer: 1500
+      }).then(()=> {
+        this.router.navigate(['']);
       })
+    },error=>{
+      // console.error('Error en el registro', error);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error en el registro",
+        text: error.error.message || 'Error desconocido',
+        showConfirmButton: true
+      });
+    }
 
-    }else{
-      this.auth.createUser(this.authUser.value).subscribe(response=>{
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Inicio de sesión correcto",
-          showConfirmButton: false,
-          timer: 1500
-        }).then(()=> {
-          this.router.navigate(['']);
-        })
-      },error=>{
-        console.error('Erro Faltan datos necesarios en el cuerpo de la solicitud', error);
-      }
+
+
     )
-    }
 
-    }
+}
 }

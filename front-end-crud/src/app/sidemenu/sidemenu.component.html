@@ -1,0 +1,28 @@
+
+<section>
+  <div class="flex bg-slate-100 text-black w-screen h-screen antialiased selection:bg-blue-600 selection:text-white">
+    <div class="d-flex relative w-screen">
+      <div id="sidebar-wrapper" class="sidebar bg-light text-dark border-right vh-100">
+        <div class="sidebar-heading">
+          <span id="sis">
+            SISCOM
+          </span>
+          <i class="bi bi-list" id="closeSide" style="cursor: pointer;"></i>
+        </div>
+        <div class="list-group list-group-flush">
+          @for(item of menuItems;track $index){
+            <div class="mb-3 mt-2 text-center">
+              <a
+                [routerLink]="item.path" routerLinkActive="bg-blue-800"
+                class="list-group-item list-group-item-action bg-light btnSide active">
+
+                <span>{{ item.title}} </span><i class="{{ item.data?.['icon']}}"></i>
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
